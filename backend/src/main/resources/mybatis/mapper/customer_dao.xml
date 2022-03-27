@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ly.dao.CustomerDao">
+
+    <select id="queryByPid" resultType="Customer" parameterType="String">
+        select * from tbl_customer where pid = #{pid};
+    </select>
+
+    <select id="queryAll" resultType="Customer">
+        select * from tbl_customer;
+    </select>
+
+    <insert id="insertOne">
+        insert into tbl_customer values
+        (#{pid}, #{lng}, #{lat}, #{demand}, #{atime}, #{pen}, #{phone}, #{location_zh}, #{info_detail});
+    </insert>
+
+    <update id="updateOne">
+        update tbl_customer
+        set demand=#{demand}, atime=#{atime}, pen=#{pen}, phone=#{phone},
+        location_zh=#{location_zh}, info_detail=#{info_detail}
+        where pid=#{pid};
+    </update>
+
+    <delete id="deleteOne">
+        delete from tbl_customer where pid=#{pid};
+    </delete>
+
+</mapper>

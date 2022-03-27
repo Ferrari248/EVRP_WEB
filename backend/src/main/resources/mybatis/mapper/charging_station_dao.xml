@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ly.dao.ChargingStationDao">
+
+    <select id="queryByPid" resultType="ChargingStation" parameterType="String">
+        select * from tbl_charging_station where pid = #{pid};
+    </select>
+
+    <select id="queryAll" resultType="ChargingStation">
+        select * from tbl_charging_station;
+    </select>
+
+    <insert id="insertOne">
+        insert into tbl_charging_station values (#{pid}, #{lng}, #{lat}, #{location_zh}, #{info_detail});
+    </insert>
+
+    <update id="updateOne">
+        update tbl_charging_station set location_zh=#{location_zh}, info_detail=#{info_detail}
+        where pid=#{pid};
+    </update>
+
+    <delete id="deleteOne">
+        delete from tbl_charging_station where pid=#{pid};
+    </delete>
+
+</mapper>

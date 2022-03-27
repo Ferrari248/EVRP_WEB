@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ly.dao.VehicleDao">
+
+    <select id="queryAll" resultType="Vehicle">
+        select * from tbl_vehicle;
+    </select>
+
+    <select id="getVehicleCount" resultType="java.lang.Integer">
+        select count(*) from tbl_vehicle;
+    </select>
+
+    <insert id="insertOne">
+        insert into tbl_vehicle (plate_number, driver)
+        values (#{plate_number}, #{driver});
+    </insert>
+
+    <update id="updateOne">
+        update tbl_vehicle set plate_number=#{plate_number}, driver=#{driver}
+        where vid=#{vid};
+    </update>
+
+    <delete id="deleteOne">
+        delete from tbl_vehicle where vid=#{vid};
+    </delete>
+
+</mapper>

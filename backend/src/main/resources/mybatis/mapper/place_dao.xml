@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ly.dao.PlaceDao">
+
+    <select id="queryByPid" resultType="Place" parameterType="String">
+        select * from tbl_place where pid = #{pid};
+    </select>
+
+    <select id="queryAll" resultType="Place">
+        select * from tbl_place order by ptype,pid;
+    </select>
+
+    <select id="queryByPtype" resultType="Place" parameterType="Integer">
+        select * from tbl_place where ptype = #{ptype};
+    </select>
+
+    <insert id="insertOne">
+        insert into tbl_place values (#{pid}, #{ptype}, #{lng}, #{lat});
+    </insert>
+
+    <delete id="deleteOne">
+        delete from tbl_place where pid=#{pid};
+    </delete>
+
+</mapper>
