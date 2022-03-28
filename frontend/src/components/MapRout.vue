@@ -135,14 +135,15 @@
             <div id="myrest">
                 <ul id="routvfor">
                     <li style="list-style-type: square"
-                            v-for="(vehicle,index) in myrout.info_list">
-                        {{vehicle.title.substring(0, vehicle.title.length-1)}}
+                            v-for="(vrout,index) in myrout.info_list">
+                        {{vrout.title.substring(0, vrout.title.length-1)}}
+                        {{vehicle.state.vehicleList[index].plate_number}}
                         <span id="routcolor" v-bind:style="{color: mycolors[index % mycolors.length]}">
                             &nbsp;&nbsp;—————
                         </span>
                         <ol style="padding: 5%">
                             <li style="list-style-image:url('../assets/bdmap/3.png');"
-                                    v-for="rout in vehicle.rout">
+                                    v-for="rout in vrout.rout">
                                 {{rout.substring(3)}}
                             </li>
                         </ol>
@@ -158,6 +159,7 @@
 <script>
     import axios from "axios";
     import place from "../data/place.js";
+    import vehicle from "../data/vehicle.js";
     import {Sunny, Moon, CircleCheckFilled, CircleClose, Setting, View} from '@element-plus/icons-vue';
 
 
@@ -234,13 +236,18 @@
         },
         provide: {
             place,
+            vehicle,
         },
         setup() {
             axios.get("http://localhost:9090/place/findall").then((result) => {
                 place.setplaceList(result.data);
             });
+            axios.get("http://localhost:9090/vehicle/findall").then((result) => {
+                vehicle.setvehicleList(result.data);
+            });
             return {
-                place
+                place,
+                vehicle,
             };
         },
         methods: {
@@ -592,13 +599,13 @@
         background-repeat: no-repeat;
         background-size: 100% 100%;
         /*滚动条*/
-        overflow-y: scroll;
+        /*overflow-y: scroll;*/
     }
 
-    #show_detail::-webkit-scrollbar {
-        /*不显示滚动条*/
-        width: 0 !important
-    }
+    /*#show_detail::-webkit-scrollbar {*/
+        /*!*不显示滚动条*!*/
+        /*width: 0 !important*/
+    /*}*/
 
     #bts {
         width: 100%;
@@ -613,7 +620,6 @@
         margin-top: 1.5vh;
         margin-left: 5vw;
         overflow: hidden;
-        /*border: gray 2px solid;*/
     }
 
     #legend img {
@@ -639,6 +645,15 @@
         display: inline;
         margin-left: 30%;
     }
+    form {
+        height: 55vh;
+        /*滚动条*/
+        overflow-y: scroll;
+    }
+    form::-webkit-scrollbar {
+        /*不显示滚动条*/
+        width: 0 !important
+    }
 
     #myrest {
         display: none;
@@ -651,6 +666,14 @@
         text-align: left;
         font-size: 80%;
         font-weight: 200;
+
+        height: 59vh;
+        /*滚动条*/
+        overflow-y: scroll;
+    }
+    #routvfor::-webkit-scrollbar {
+        /*不显示滚动条*/
+        width: 0 !important
     }
 
     #routcolor {
