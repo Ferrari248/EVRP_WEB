@@ -204,7 +204,7 @@ def get_dist_from_baidu_route_matrix(one_sa_list, one_sb_list):
     :return:  元组列表。 [(pida_1, pidb_1, dist1, calc_type), (pida_1, pidb_2, dist1, calc_type),  .....]
     """
     url = "https://api.map.baidu.com/routematrix/v2/driving"
-    ak = "m2IpGFAAGfxmOtcQoPsOzajdKfVOvGa1"
+    ak = "ABCDEFG"
     time_sleep = 0.5
     retry_time = 3
     time_out = 2
@@ -214,7 +214,7 @@ def get_dist_from_baidu_route_matrix(one_sa_list, one_sb_list):
     origins = "|".join(ori_list)
     destinations = "|".join(des_list)
 
-    # https://api.map.baidu.com/routematrix/v2/driving?origins=39.915,116.404|39.915,116.414&destinations=39.885,116.404|39.885,116.414&ak=m2IpGFAAGfxmOtcQoPsOzajdKfVOvGa1
+    # https://api.map.baidu.com/routematrix/v2/driving?origins=39.915,116.404|39.915,116.414&destinations=39.885,116.404|39.885,116.414&ak=ABCDEFG
     req_params = {
         'ak': ak,
         'origins': origins,
